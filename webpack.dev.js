@@ -8,12 +8,17 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   stats: 'verbose',
+  output: {
+    path: path.resolve(process.cwd(), 'dist')
+  },
   module: {
     rules: [
       {
         test: '/.js$/',
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: 'babel-loader'
+      },
+      {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       }
