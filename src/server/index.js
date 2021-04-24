@@ -1,9 +1,12 @@
 let appData = {};
 var path = require('path');
+const fetch = require('node-fetch');
+const cors = require('cors');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
 
 const app = express();
+app.use(cors());
 
 app.use(express.static('dist'));
 
