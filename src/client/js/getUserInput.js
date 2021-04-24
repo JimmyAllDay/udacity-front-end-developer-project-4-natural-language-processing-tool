@@ -8,9 +8,7 @@ function getUserInput() {
   // Get input
   submitButton.addEventListener('click', function() {
     userInput = inputField.value;
-    if (userInput != '') {
-      console.log(`client side input = ${userInput}`);
-    }
+    console.log(`client side input = ${userInput}`);
 
     const postData = async (url = '', data = {}) => {
       console.log(data);
