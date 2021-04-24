@@ -1,4 +1,4 @@
-let endPoint = {};
+let appData = {};
 var path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
@@ -22,4 +22,11 @@ app.get('/test', function(req, res) {
   res.send(mockAPIResponse);
 });
 
-function sendToEndPoint() {}
+app.post('/', function(req, res) {
+  res.send('post recieved');
+});
+
+function sendToEndPoint(req, res) {
+  console.log(req.body);
+  appData = req.body;
+}
