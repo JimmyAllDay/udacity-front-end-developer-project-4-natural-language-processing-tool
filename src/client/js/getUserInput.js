@@ -5,7 +5,8 @@ function getUserInput() {
   let userInput = '';
   let inputField = document.getElementById('name');
   let submitButton = document.getElementById('submitButton');
-  // Get input
+
+  // ----------------Post request -------------------
   submitButton.addEventListener('click', function() {
     userInput = inputField.value;
     console.log(`client side input = ${userInput}`);
@@ -30,7 +31,7 @@ function getUserInput() {
         console.log('error', error);
       }
     };
-    postData('/', userInput);
+    postData('http://localhost:8080/postData', userInput);
   });
 }
 

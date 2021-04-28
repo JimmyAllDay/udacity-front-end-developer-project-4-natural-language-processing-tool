@@ -1,35 +1,69 @@
-let appData = {};
-var path = require('path');
-const fetch = require('node-fetch');
-const cors = require('cors');
+// -------------Project Set Up -----------------
+
+const sentence = 'This is the best course Ive ever taken';
+let appData = [{ answer: sentence }];
+
+// ------------- Express -----------------------
+
+// import express
 const express = require('express');
-const mockAPIResponse = require('./mockAPI.js');
 
+// init Express
 const app = express();
+
+// set port
+const port = 8080;
+
+// -------------Middleware -------------------
+
+// import path
+let path = require('path');
+
+// import fetch
+const fetch = require('node-fetch');
+
+// import cors
+const cors = require('cors');
+
+// import body-parser
+const bodyParser = require('body-parser');
+
+// -------------------- API Variables ---------------------
+// Base URL
+const apiBaseUrl = 'https://api.meaningcloud.com/sentiment-2.1';
+// API Key
+const apiKey = '4642a132e4fdbcbc35d525e854c0c51c';
+
+// -------------------init middleware----------------------
+
+// init middleware
 app.use(cors());
+app.use(bodyParser());
 
-app.use(express.static('dist'));
+// ----------------------Functions------------------------
 
-console.log(__dirname);
-
-app.get('/', function(req, res) {
-  res.sendFile('dist/index.html');
+// confirm port
+app.listen(port, function() {
+  console.log('Example app listening on port 3000');
 });
 
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function() {
-  console.log('Example app listening on port 8080!');
+// POST Route to collect user input
+app.post('/postData', (req, res) => {
+  // Send input to project endpoint array
+  res.send('nodemon!');
+  // data = req.body;
+  // appData.push(data);
+  // // API URL
+  // let apiURL = `${apiBaseUrl}?key=${apiKey}&txt=${appData[0].answer}&lang=auto`;
+  // async function getsentiment() {
+  //   await fetch(apiURL)
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       console.log(data);
+  //       res.send(data);
+  //     });
+  // }
+  // getsentiment();
 });
-
-app.get('/test', function(req, res) {
-  res.send(mockAPIResponse);
-});
-
-app.post('/', function(req, res) {
-  res.send('post recieved');
-});
-
-function sendToEndPoint(req, res) {
-  console.log(req.body);
-  appData = req.body;
-}
