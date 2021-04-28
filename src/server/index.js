@@ -1,7 +1,5 @@
 // -------------Project Set Up -----------------
-
-const sentence = 'This is the best course Ive ever taken';
-let appData = [{ answer: sentence }];
+let appData = [];
 
 // ------------- Express -----------------------
 
@@ -44,26 +42,26 @@ app.use(bodyParser());
 
 // confirm port
 app.listen(port, function() {
-  console.log('Example app listening on port 3000');
+  console.log(`Example app listening on port ${port}`);
 });
 
-// POST Route to collect user input
+// POST Route to collect & process user input
 app.post('/postData', (req, res) => {
   // Send input to project endpoint array
-  res.send('nodemon!');
-  // data = req.body;
-  // appData.push(data);
-  // // API URL
-  // let apiURL = `${apiBaseUrl}?key=${apiKey}&txt=${appData[0].answer}&lang=auto`;
-  // async function getsentiment() {
-  //   await fetch(apiURL)
-  //     .then(response => {
-  //       return response.json();
-  //     })
-  //     .then(data => {
-  //       console.log(data);
-  //       res.send(data);
-  //     });
-  // }
-  // getsentiment();
+  data = req.body;
+  appData.push(data);
+  // API URL
+  let apiURL = `${apiBaseUrl}?key=${apiKey}&txt=${appData[0].answer}&lang=auto`;
+  async function getsentiment() {
+    await fetch(apiURL)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        res.send(data);
+      })
+      .then((appData = []));
+  }
+  getsentiment();
 });

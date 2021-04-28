@@ -3,35 +3,43 @@
 function getUserInput() {
   // Variables
   let userInput = '';
-  let inputField = document.getElementById('name');
-  let submitButton = document.getElementById('submitButton');
+  const inputField = document.getElementById('input-field');
+  const submitButton = document.getElementById('submitButton');
+  const serverMessage = document.getElementById('serverMessage');
+
+  const userPostUrl = 'http://localhost:8080/postData';
 
   // ----------------Post request -------------------
+
+  // add event listener
   submitButton.addEventListener('click', function() {
     userInput = inputField.value;
-    console.log(`client side input = ${userInput}`);
+    if (inputField.value !== '') {
+      async function postData(url = '', data = {}) {
+        const options = {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(data)
+        };
+        const response = await fetch(url, options);
 
-    const postData = async (url = '', data = {}) => {
-      console.log(data);
-      const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        // Body data type must match "Content-Type" header
-        body: JSON.stringify(data)
-      });
-
-      try {
-        const newData = await response.json();
-        console.log(newData);
-        return newData;
-      } catch (error) {
-        console.log('error', error);
+        return await response.json();
       }
-    };
-    postData('http://localhost:8080/postData', userInput);
+
+      postData(userPostUrl, { answer: userInput })
+        .then(data => {
+          console.log(data); // JSON data parsed by `data.json()` call
+          serverMessage.innerText = data.irony;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   });
 }
 

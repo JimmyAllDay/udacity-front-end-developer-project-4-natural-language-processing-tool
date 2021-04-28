@@ -23,17 +23,21 @@
 
     <main>
       <section>
-        <form class="">
-          <input id="name" type="text" name="input" value="" />
-          <button id="submitButton" type="submit" name="submit" value="submit">
-            Submit
-          </button>
-        </form>
+        <input
+          id="input-field"
+          type="text"
+          name="input"
+          onfocus="this.value"
+          value="Enter Text Here"
+        />
+        <button id="submitButton" name="submit">
+          Submit
+        </button>
       </section>
 
       <section>
-        <strong>Form Results:</strong>
-        <div id="results"></div>
+        <strong>Irony indicator:</strong>
+        <div id="serverMessage"></div>
       </section>
     </main>
 
