@@ -3,7 +3,9 @@ function formFunctions() {
   const inputField = document.getElementById('input-field');
 
   inputField.onclick = function() {
-    inputField.value = '';
+    if (inputField.value === 'Enter Text Here') {
+      inputField.value = '';
+    }
   };
 }
 
