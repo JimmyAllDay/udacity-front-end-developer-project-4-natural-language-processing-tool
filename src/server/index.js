@@ -1,22 +1,67 @@
-var path = require('path')
-const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
+// -------------Project Set Up -----------------
+let appData = [];
 
-const app = express()
+// ------------- Express -----------------------
 
-app.use(express.static('dist'))
+// import express
+const express = require('express');
 
-console.log(__dirname)
+// init Express
+const app = express();
 
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
+// set port
+const port = 8080;
 
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
-})
+// -------------Middleware -------------------
 
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-})
+// import path
+let path = require('path');
+
+// import fetch
+const fetch = require('node-fetch');
+
+// import cors
+const cors = require('cors');
+
+// import body-parser
+const bodyParser = require('body-parser');
+
+// -------------------- API Variables ---------------------
+// Base URL
+const apiBaseUrl = 'https://api.meaningcloud.com/sentiment-2.1';
+// API Key
+const apiKey = '4642a132e4fdbcbc35d525e854c0c51c';
+
+// -------------------init middleware----------------------
+
+// init middleware
+app.use(cors());
+app.use(bodyParser());
+
+// ----------------------Functions------------------------
+
+// confirm port
+app.listen(port, function() {
+  console.log(`Example app listening on port ${port}`);
+});
+
+// POST Route to collect & process user input
+app.post('/postData', (req, res) => {
+  // Send input to project endpoint array
+  data = req.body;
+  appData.push(data);
+  // API URL
+  let apiURL = `${apiBaseUrl}?key=${apiKey}&txt=${appData[0].answer}&lang=auto`;
+  async function getsentiment() {
+    await fetch(apiURL)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        res.send(data);
+      })
+      .then((appData = []));
+  }
+  getsentiment();
+});
