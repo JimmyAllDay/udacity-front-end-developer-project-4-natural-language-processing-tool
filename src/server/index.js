@@ -38,6 +38,9 @@ const apiKey = '4642a132e4fdbcbc35d525e854c0c51c';
 app.use(cors());
 app.use(bodyParser());
 
+// serve static files
+app.use(express.static('dist'));
+
 // ----------------------Functions------------------------
 
 // confirm port

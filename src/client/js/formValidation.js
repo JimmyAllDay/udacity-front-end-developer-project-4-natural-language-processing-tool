@@ -3,8 +3,8 @@ function formValidation() {
   const submitButton = document.getElementById('submitButton');
 
   submitButton.addEventListener('click', function() {
-    if (inputField.value === '') {
-      alert('please enter some text in the input field');
+    if (inputField.value == '') {
+      event.preventDefault(alert('Please enter some text in the input field'));
     }
   });
 }

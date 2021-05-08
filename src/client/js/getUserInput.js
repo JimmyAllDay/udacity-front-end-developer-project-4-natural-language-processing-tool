@@ -14,7 +14,7 @@ function getUserInput() {
   // add event listener
   submitButton.addEventListener('click', function() {
     userInput = inputField.value;
-    if (inputField.value !== '') {
+    if (userInput != '' && userInput != 'Enter Text Here') {
       async function postData(url = '', data = {}) {
         const options = {
           method: 'POST',
@@ -33,8 +33,8 @@ function getUserInput() {
 
       postData(userPostUrl, { answer: userInput })
         .then(data => {
-          console.log(data); // JSON data parsed by `data.json()` call
-          serverMessage.innerText = data.irony;
+          console.log(data);
+          serverMessage.innerText = `${data.irony} ${data.agreement}`;
         })
         .catch(err => {
           console.log(err);

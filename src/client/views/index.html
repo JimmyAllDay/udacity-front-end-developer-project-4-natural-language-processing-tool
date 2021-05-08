@@ -12,37 +12,45 @@
   </head>
 
   <body>
-    <header>
-      <div class="">
-        Logo
-      </div>
-      <div class="">
-        navigation
-      </div>
-    </header>
+    <header></header>
 
     <main>
+      <div>
+        <h1 class="title">Meaning Cloud API</h1>
+        <h2 class="title">Language Assessment Tool</h2>
+      </div>
+
       <section>
-        <input
-          id="input-field"
-          type="text"
-          name="input"
-          onfocus="this.value"
-          value="Enter Text Here"
-        />
-        <button id="submitButton" name="submit">
-          Submit
-        </button>
+        <div id="form">
+          <input
+            id="input-field"
+            type="text"
+            name="input"
+            placeholder="Enter a sentence or phrase here"
+          />
+          <button id="submitButton" name="submit">
+            Submit
+          </button>
+        </div>
       </section>
 
       <section>
-        <strong>Irony indicator:</strong>
+        <strong>Meaningcloud Analysis:</strong>
+        <br />
+        <br />
         <div id="serverMessage"></div>
       </section>
     </main>
 
-    <footer>
-      <p>This is a footer</p>
-    </footer>
+    <footer></footer>
+    <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
   </body>
 </html>
