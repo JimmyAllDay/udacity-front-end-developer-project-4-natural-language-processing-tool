@@ -15,6 +15,6 @@ Instructions:
 5. Go to localhost:8080 in your browser
 
 6. You can now type a phrase or sentence into the input field
-   The Meaning Cloud API will return an analysis of the phrase to the UI
+   The Meaning Cloud API will return an analysis of the phrase to the UI. Try copying and pasting text from a new article or blog post.
 
 The project includes a service worker that will make the UI available in the browser after the node server is stopped
