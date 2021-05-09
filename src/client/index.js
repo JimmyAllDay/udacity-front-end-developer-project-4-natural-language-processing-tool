@@ -8,8 +8,10 @@ import './styles/header.scss';
 
 console.log('CHANGE!!');
 
+// Declare DOM variables
 const submitButton = document.getElementById('submitButton');
 
+// Single event listener triggers app functionality
 submitButton.addEventListener('click', function() {
   let input = document.getElementById('input-field').value;
   let canFetchAPI = formValidation(input);

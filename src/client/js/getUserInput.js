@@ -1,27 +1,21 @@
-// ---------------- Variables --------------------------
-
 function getUserInput(input) {
   // Variables
   const serverMessage = document.getElementById('serverMessage');
   const userPostUrl = 'http://localhost:8080/postData';
 
-  // ----------------Post request -------------------
-  let userInput = input;
-
   // Remove unescaped characters
-  userInput = encodeURI(userInput);
+  let userInput = encodeURI(input);
+
+  // ----------------Post request -------------------
 
   // POST request function
   async function postData(url = '', data = {}) {
     // Declare options
     const options = {
       method: 'POST',
-      credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json'
       },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
       body: JSON.stringify(data)
     };
 
