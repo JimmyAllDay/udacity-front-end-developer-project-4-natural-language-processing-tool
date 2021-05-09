@@ -8,5 +8,13 @@ import './styles/header.scss';
 
 console.log('CHANGE!!');
 
-formValidation();
-getUserInput();
+const submitButton = document.getElementById('submitButton');
+
+submitButton.addEventListener('click', function() {
+  let input = document.getElementById('input-field').value;
+  let canFetchAPI = formValidation(input);
+  if (canFetchAPI) {
+    getUserInput(input);
+  }
+  canFetchAPI = false;
+});
