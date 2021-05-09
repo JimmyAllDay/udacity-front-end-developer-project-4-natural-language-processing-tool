@@ -14,8 +14,16 @@ function getUserInput() {
   // add event listener
   submitButton.addEventListener('click', function() {
     userInput = inputField.value;
-    if (userInput != '' && userInput != 'Enter Text Here') {
+    console.log(`Input being sent by POST Request is: ${userInput}`);
+
+    // Remove unescaped characters
+    userInput = encodeURI(userInput);
+
+    // Check input string is analyse-able
+    if (userInput != '') {
+      // Post request
       async function postData(url = '', data = {}) {
+        // Declare options
         const options = {
           method: 'POST',
           credentials: 'same-origin',
@@ -26,8 +34,8 @@ function getUserInput() {
           referrerPolicy: 'no-referrer',
           body: JSON.stringify(data)
         };
-        const response = await fetch(url, options);
 
+        const response = await fetch(url, options);
         return await response.json();
       }
 
