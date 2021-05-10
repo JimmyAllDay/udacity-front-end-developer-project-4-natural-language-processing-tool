@@ -1,5 +1,3 @@
-import { postData } from '/src/client/api/postData.js';
-
 // ---------------- Variables --------------------------
 
 function analyseUserInput(input) {
@@ -14,6 +12,24 @@ function analyseUserInput(input) {
 
   // Remove unescaped characters
   userInput = encodeURI(userInput);
+
+  // POST request
+  async function postData(url = '', data = {}) {
+    // Declare options
+    const options = {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data)
+    };
+
+    const response = await fetch(url, options);
+    return await response.json();
+  }
 
   // Call imported POST request function
   postData(userPostUrl, { answer: userInput })
