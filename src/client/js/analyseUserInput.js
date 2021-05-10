@@ -1,6 +1,8 @@
+import { postData } from '/src/client/api/postData.js';
+
 // ---------------- Variables --------------------------
 
-function getUserInput(input) {
+function analyseUserInput(input) {
   // Variables
   const serverMessage = document.getElementById('serverMessage');
   const userPostUrl = 'http://localhost:8080/postData';
@@ -11,24 +13,7 @@ function getUserInput(input) {
   // Remove unescaped characters
   userInput = encodeURI(userInput);
 
-  // POST request function
-  async function postData(url = '', data = {}) {
-    // Declare options
-    const options = {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data)
-    };
-
-    const response = await fetch(url, options);
-    return await response.json();
-  }
-
+  // Call POST request
   postData(userPostUrl, { answer: userInput })
     .then(data => {
       console.log(data);
@@ -39,4 +24,4 @@ function getUserInput(input) {
     });
 }
 
-export { getUserInput };
+export { analyseUserInput };

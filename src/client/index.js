@@ -1,4 +1,4 @@
-import { getUserInput } from './js/getUserInput';
+import { analyseUserInput } from './js/analyseUserInput';
 import { formValidation } from './js/formValidation';
 import './styles/resets.scss';
 import './styles/base.scss';
@@ -14,7 +14,7 @@ submitButton.addEventListener('click', function() {
   let input = document.getElementById('input-field').value;
   let canFetchAPI = formValidation(input);
   if (canFetchAPI) {
-    getUserInput(input);
+    analyseUserInput(input);
   }
   canFetchAPI = false;
 });
