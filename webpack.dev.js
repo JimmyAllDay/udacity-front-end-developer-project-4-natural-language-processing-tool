@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const NodemonPlugin = require('nodemon-webpack-plugin'); // Ding
+const NodemonPlugin = require('nodemon-webpack-plugin');
 
 // --------------Note--------------------------------
 // Some settings in this file are taken from: https://itnext.io/auto-reload-a-full-stack-javascript-project-using-nodemon-and-webpack-dev-server-together-a636b271c4e
@@ -45,6 +45,7 @@ module.exports = {
       errors: false // defaults to false
     }
   },
+  // Not sure if this is meant to be here
   module: {
     rules: [
       {
